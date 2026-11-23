@@ -23,3 +23,9 @@ npm run deploy:prod
 ```
 
 Requiere el perfil de AWS `bier-personal`.
+
+## Eventos
+
+Una cola SQS (`Events`) suscrita a los temas de `adogtame-infra` con filtro por tipo de evento, y una cola de mensajes fallidos (`EventsDlq`) tras 5 intentos. El consumidor (`src/handlers/events.ts`) tiene un límite de 60 s. Detalle de los eventos en `adog_MS.md` §7.
+
+El cron `OutboxRelay` reenvía cada hora los eventos pendientes del outbox (`src/handlers/outbox-relay.ts`).

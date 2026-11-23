@@ -10,6 +10,22 @@ declare module "sst" {
       "type": "sst.aws.ApiGatewayV2"
       "url": string
     }
+    "AuthEvents": {
+      "arn": string
+      "type": "sst.aws.SnsTopic"
+    }
+    "Events": {
+      "type": "sst.aws.Queue"
+      "url": string
+    }
+    "EventsDlq": {
+      "type": "sst.aws.Queue"
+      "url": string
+    }
+    "RequestsEvents": {
+      "arn": string
+      "type": "sst.aws.SnsTopic"
+    }
   }
 }
 
