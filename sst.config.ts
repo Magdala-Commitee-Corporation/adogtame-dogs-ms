@@ -56,11 +56,8 @@ export default $config({
       filter: { tipo: ["CuentaEliminada", "CuentaRestaurada"] },
     });
 
-    // Re-sends pending outbox events every hour (adog_ARCH.md §4.2).
-    new sst.aws.Cron("OutboxRelay", {
-      schedule: "rate(1 hour)",
-      function: { handler: "src/handlers/outbox-relay.handler", timeout: "60 seconds" },
-    });
+    // No scheduled outbox relay: it would wake the paused Aurora cluster every
+    // hour. Pending events are re-sent by the next request (adog_ARCH.md §4.2).
 
     return { api: api.url, eventsQueue: events.url, eventsDlq: eventsDlq.url };
   },
